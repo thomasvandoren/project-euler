@@ -22,3 +22,6 @@ run-all: all
 	./$$chpl_prg ; \
 	echo ; \
 	done
+
+clean:
+	@rm -f $(PRGS)
