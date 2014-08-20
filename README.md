@@ -58,7 +58,7 @@ represent the best possible solutions that could be written in Chapel (nor are
 they necessarily the best algorithms).
 
 That being said, I do try to use parallel constructs where possible. The
-solutions are written (for the most part) for my laptop, so not attempt is made
+solutions are written (for the most part) for my laptop, so no attempt is made
 to use constructs that take advantage of distributed memory or multiple
 nodes. It would be pretty easy to add that kind of support for most solutions
 though.
