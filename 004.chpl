@@ -21,6 +21,8 @@ proc isPalindrome(num) {
   return true;
 }
 
+// TODO: Maybe it would be faster to calculate all of the products in parallel
+//       and then reduce the max. (thomasvandoren, 2014-08-19)
 var maxResult = (0, -1, -1);
 for (i, j) in D {
   var result = i * j;
