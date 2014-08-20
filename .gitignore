@@ -22,3 +22,7 @@
 *.exe
 *.out
 *.app
+
+# output binaries
+/0*
+!0*.chpl
