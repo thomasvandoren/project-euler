@@ -3,6 +3,8 @@ Project Euler
 
 Project Euler, in [Chapel](http://chapel.cray.com/)!
 
+[![thomasvandoren on Euler](https://projecteuler.net/profile/thomasvandoren.png)](https://projecteuler.net/profile/thomasvandoren.png)
+
 Run the solutions
 -----------------
 
