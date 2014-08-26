@@ -25,3 +25,6 @@ run-all: all
 
 clean:
 	@rm -f $(PRGS)
+
+tests:
+	@bash ./test/run_tests.bash
