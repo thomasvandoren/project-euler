@@ -25,4 +25,7 @@
 
 # output binaries
 /0*
-!0*.chpl
+!/0*.chpl
+
+# Test dir
+/test/*.chpl
