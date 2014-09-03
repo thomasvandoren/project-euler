@@ -1,6 +1,6 @@
 
 CHPL = chpl
-CHPL_FLAGS = --fast
+CHPL_FLAGS = --fast --module-dir lib/
 
 CWD = $(shell pwd)
 
