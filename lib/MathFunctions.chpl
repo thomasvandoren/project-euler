@@ -24,3 +24,14 @@ proc factorial(n: int): BigInt {
     return result;
   }
 }
+
+// Returns sum of individual digits of n. n is serialized as string, then each
+// character is cast to an int, and added together.
+proc sumDigits(n) {
+  var nStr = n: string,
+    result = 0;
+  for i in 1..nStr.length {
+    result += nStr.substring(i): int;
+  }
+  return result;
+}
