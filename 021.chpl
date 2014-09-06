@@ -2,6 +2,8 @@
  * Amicable numbers
  */
 
+use MathFunctions;
+
 config const maxNum = 10000,
   printPairs = false;
 
@@ -36,27 +38,4 @@ proc main() {
 // sumDivisors(b) == a, and a != b, then a and b are amicable.
 proc amicable(a, b) {
   return a != b && sumDivisors(a) == b && sumDivisors(b) == a;
-}
-
-// Yields proper divisors of n. Proper divisors of n are numbers less than n
-// which divide evenly into n.
-iter divisors(n) {
-  var current = 1;
-
-  while current <= n / 2 {
-    yield current;
-
-    do {
-      current += 1;
-    } while n % current != 0;
-  }
-}
-
-// Returns sum of all divisors of n.
-proc sumDivisors(n) {
-  var sum = 0;
-  for i in divisors(n) {
-    sum += i;
-  }
-  return sum;
 }

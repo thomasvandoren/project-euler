@@ -13,6 +13,21 @@ proc choose(n: int, k: int): BigInt {
   return result;
 }
 
+// Yields proper divisors of n. Proper divisors of n are numbers less than n
+// which divide evenly into n.
+iter divisors(n) {
+  var current = 1;
+
+  while current <= n / 2 {
+    yield current;
+
+    do {
+      current += 1;
+    } while n % current != 0;
+  }
+}
+
+// n!
 proc factorial(n: int): BigInt {
   if n < 0 {
     halt("Error! non-positive factorial!?");
@@ -34,4 +49,13 @@ proc sumDigits(n) {
     result += nStr.substring(i): int;
   }
   return result;
+}
+
+// Returns sum of all divisors of n.
+proc sumDivisors(n) {
+  var sum = 0;
+  for i in divisors(n) {
+    sum += i;
+  }
+  return sum;
 }
