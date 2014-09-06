@@ -40,6 +40,19 @@ proc factorial(n: int): BigInt {
   }
 }
 
+// Print the Fibonacci number less than and equal to 4 million.
+iter fibonacci(): BigInt {
+  var current = new BigInt(1),
+    next = new BigInt(1),
+    tmp: BigInt;
+  while true {
+    yield current;
+
+    current.add(current, next);
+    current <=> next;
+  }
+}
+
 // Returns sum of individual digits of n. n is serialized as string, then each
 // character is cast to an int, and added together.
 proc sumDigits(n) {
