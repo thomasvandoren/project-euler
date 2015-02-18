@@ -86,11 +86,15 @@ proc isPrime(number) {
 // Generates first k prime numbers.
 //
 // Inspired by: http://stackoverflow.com/a/568618
+// And:         http://code.activestate.com/recipes/117119/#c4
 iter primes(k: uint, param debug=false): uint {
-  var i: uint = 0,
-    q: uint = 2;
+  if k >= 1 then
+    yield 2;
+
+  var i: uint = 1,
+    q: uint = 3;
   var D: domain(uint),
-    A: [D] Vector(uint);
+    A: [D] uint;
 
   while true {
     if ! D.member(q) {
@@ -103,33 +107,16 @@ iter primes(k: uint, param debug=false): uint {
       if i == k then
         break;
 
-      const qq = q * q;
-      if ! D.member(qq) then
-        A[qq] = new Vector(uint);
-
-      A[qq].push(q);
+      A[q * q] = 2 * q;
     } else {
-      for p in A[q] {
-
-        const pq = p + q;
-        if ! D.member(pq) then
-          A[pq] = new Vector(uint);
-
-        A[pq].push(p);
-      }
-      while ! A[q].empty do
-        A[q].pop();
-      delete A[q];
+      const p = A[q];
+      var pq = p + q;
+      while D.member(pq) do
+        pq += p;
+      A[pq] = p;
       D -= q;
     }
-    q += 1;
-  }
-
-  // Clear out the vectors.
-  for k in D {
-    while ! A[k].empty do
-      A[k].pop();
-    delete A[k];
+    q += 2;
   }
 }
 
