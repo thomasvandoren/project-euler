@@ -2,6 +2,8 @@
  * Math helper functions.
  */
 
+use Containers;
+
 // requires CHPL_GMP=gmp or system
 use GMP;
 
@@ -79,6 +81,88 @@ proc isPrime(number) {
   }
   return true;
 }
+
+// Sieve of Eratosthenes
+// Generates first k prime numbers.
+//
+// Inspired by: http://stackoverflow.com/a/568618
+iter primes(k: uint, param debug=false): uint {
+  var i: uint = 0,
+    q: uint = 2;
+  var D: domain(uint),
+    A: [D] Vector(uint);
+
+  while true {
+    if ! D.member(q) {
+      if debug then
+        assert(isPrime(q));
+
+      yield q;
+
+      i += 1;
+      if i == k then
+        break;
+
+      const qq = q * q;
+      if ! D.member(qq) then
+        A[qq] = new Vector(uint);
+
+      A[qq].push(q);
+    } else {
+      for p in A[q] {
+
+        const pq = p + q;
+        if ! D.member(pq) then
+          A[pq] = new Vector(uint);
+
+        A[pq].push(p);
+      }
+      while ! A[q].empty do
+        A[q].pop();
+      delete A[q];
+      D -= q;
+    }
+    q += 1;
+  }
+
+  // Clear out the vectors.
+  for k in D {
+    while ! A[k].empty do
+      A[k].pop();
+    delete A[k];
+  }
+}
+
+/* // Yield the first `k` prime numbers as BigInts. */
+/* iter bigPrimes(k: int(64)): BigInt { */
+/*   var i = 0, */
+/*     q = new BigInt(2); */
+/*   var D: domain(BigInt); */
+/*   var A: [D] domain(BigInt); */
+
+/*   while true { */
+/*     if ! D.member(q) { */
+/*       yield q; */
+/*       i += 1; */
+/*       var qSquared = new BigInt(); */
+/*       qSquared.mul(q, q); */
+/*       D += qSquared; */
+/*       A[qSquared] += q; */
+/*     } else { */
+/*       for p in A[q] { */
+/*         var pq = new BigInt(); */
+/*         pq.add(p, q); */
+/*         D += pq; */
+/*         A[pq] = p; */
+/*       } */
+/*       D.remove(q); */
+/*     } */
+/*     if i == k { */
+/*       break; */
+/*     } */
+/*     q += 1; */
+/*   } */
+/* } */
 
 // Returns sum of individual digits of n. n is serialized as string, then each
 // character is cast to an int, and added together.
