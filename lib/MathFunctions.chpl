@@ -120,6 +120,39 @@ iter primes(k: uint, param debug=false): uint {
   }
 }
 
+// Sieve of Eratosthenes up to max value.
+// Generates prime numbers less than or equal to `m`.
+iter primesUpTo(m: uint, param debug=false): uint {
+  if m < 2 then
+    halt("no primes less than 2");
+
+  if m >= 2 then
+    yield 2;
+
+  var q: uint = 3,
+    D: domain(uint),
+    A: [D] uint;
+
+  while q <= m {
+    if ! D.member(q) {
+      if debug then
+        assert(isPrime(q));
+
+      yield q;
+
+      A[q * q] = 2 * q;
+    } else {
+      const p = A[q];
+      var pq = p + q;
+      while D.member(pq) do
+        pq += p;
+      A[pq] = p;
+      D -= q;
+    }
+    q += 2;
+  }
+}
+
 /* // Yield the first `k` prime numbers as BigInts. */
 /* iter bigPrimes(k: int(64)): BigInt { */
 /*   var i = 0, */
