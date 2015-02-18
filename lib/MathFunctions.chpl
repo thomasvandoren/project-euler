@@ -53,6 +53,33 @@ iter fibonacci(): BigInt {
   }
 }
 
+// This is a fairly optimized version of calculating if a number is prime or
+// not.
+// See: http://stackoverflow.com/a/15285588
+proc isPrime(number) {
+  if number == 2 || number == 3 {
+    return true;
+  } else if number < 2 || number % 2 == 0 {
+    return false;
+  } else if number < 9 {
+    return true;
+  } else if number % 3 == 0 {
+    return false;
+  }
+
+  var r = (number ** 0.5): uint,
+    f: uint = 5;
+  while (f <= r) {
+    if number % f == 0 {
+      return false;
+    } else if number % (f + 2) == 0 {
+      return false;
+    }
+    f += 6;
+  }
+  return true;
+}
+
 // Returns sum of individual digits of n. n is serialized as string, then each
 // character is cast to an int, and added together.
 proc sumDigits(n) {
