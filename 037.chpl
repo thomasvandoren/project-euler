@@ -28,25 +28,26 @@ proc isTruncatable(p: uint) {
   // 2, 3, 5, and 7 are not considered to be truncatable primes.
   if p < 10 then
     return false;
-
-  /* var ltor, rtol: bool; */
-  /* cobegin { */
-  /*   ltor = isTruncLtoR(p); */
-  /*   rtol = isTruncRtoL(p); */
-  /* } */
-  /* return rtol && ltor; */
-
   return isTruncRtoL(p) && isTruncLtoR(p);
 }
 
 // Removes first digit from `k`. Returns 2..n digits for for number `k` with
 // 1..n digits.
 proc removeFirst(k: uint) {
-  const s = k: string,
-    d = s.substring(2..s.length);
-  if d.length == 0 then
+  if k < 10 then
     return 0: uint;
-  return d: uint;
+
+  var d: uint = k / 10,
+    r: uint = k % 10,
+    multiplier: uint = 1;
+
+  while d >= 10 {
+    multiplier *= 10;
+    r = multiplier * (d % 10) + r;
+    d /= 10;
+  }
+
+  return r;
 }
 
 // Check if p is truncatable, working from left to right.
