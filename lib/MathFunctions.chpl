@@ -82,6 +82,59 @@ proc isPrime(number) {
   return true;
 }
 
+// Yield successive permutations of the elements.
+//
+// Inspired by: https://docs.python.org/2/library/itertools.html#itertools.permutations
+iter permutations(elements: [] string, length=-1): string {
+  var n = elements.size;
+  var r = length;
+
+  // Default for r is length.
+  if r == -1 then
+    r = n;
+
+  // If permutations are longer than number of elements, no permutations are
+  // possible.
+  if r > n then
+    return;
+
+  var indices: [{0..n-1}] int = [i in 0..n-1] i,
+    cycles: [{0..n-1}] int = [c in n-r+1..n by -1] c;
+
+  var perm = "";
+  for i in indices[0.. # r] do
+    perm += elements[i+1];
+  yield perm;
+
+  while true {
+    var done = true;
+    for i in 0..r-1 by -1 {
+      cycles[i] -= 1;
+      if cycles[i] == 0 {
+        var rightInd = indices[i+1..],
+          leftInd = indices[i..i];
+        indices[i.. # rightInd.size] = rightInd;
+        indices[(i + rightInd.size)..] = leftInd;
+        cycles[i] = n - i;
+      } else {
+        indices[i] <=> indices[indices.size - cycles[i]];
+
+        perm = "";
+        for i in indices[0.. # r] do
+          perm += elements[i+1];
+        yield perm;
+
+        done = false;
+        break;
+      }
+    }
+
+    // Did not yield a permutation, so we're done.
+    if done then
+      return;
+  }
+}
+
 // Sieve of Eratosthenes
 // Generates first k prime numbers.
 //
