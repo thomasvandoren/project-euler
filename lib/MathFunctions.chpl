@@ -91,6 +91,10 @@ iter primes(k: uint, param debug=false): uint {
   if k >= 1 then
     yield 2;
 
+  // If only one prime requested, stop here.
+  if k == 1 then
+    return;
+
   var i: uint = 1,
     q: uint = 3;
   var D: domain(uint),
@@ -128,6 +132,9 @@ iter primesUpTo(m: uint, param debug=false): uint {
 
   if m >= 2 then
     yield 2;
+
+  if m == 2 then
+    return;
 
   var q: uint = 3,
     D: domain(uint),
