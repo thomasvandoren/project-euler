@@ -31,8 +31,8 @@ proc main() {
     c = resultC.read();
 
   if printTriplet {
-    writef("%di = %di + %di + %di\n", sum, a, b, c);
-    writef("%di^2 = %di^2 + %di^2\n", c, a, b);
+    writef("%n = %n + %n + %n\n", sum, a, b, c);
+    writef("%n^2 = %n^2 + %n^2\n", c, a, b);
   }
   writeln(a * b * c);
 }

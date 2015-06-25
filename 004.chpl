@@ -31,4 +31,4 @@ for (i, j) in D {
   }
 }
 
-writef("%di = %di * %di\n", maxResult(1), maxResult(2), maxResult(3));
+writef("%n = %n * %n\n", maxResult(1), maxResult(2), maxResult(3));

@@ -25,7 +25,7 @@ proc main() {
         sum.write(sum.read() + a + b);
 
         if printPairs {
-          writef("d(%di) = %di\nd(%di) = %di\n", a, b, b, a);
+          writef("d(%n) = %n\nd(%n) = %n\n", a, b, b, a);
         }
       }
     }
