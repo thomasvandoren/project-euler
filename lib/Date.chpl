@@ -76,6 +76,12 @@ record Date {
       halt("Error: Invalid year: ", year);
   }
 
+  /* Return new instance of Date with same attribute that current instance.
+   */
+  proc copy() {
+    return new Date(this.year, this.month, this.day);
+  }
+
   /* Number of days in year preceding first day of instance's month. It simply
    * iterates through all the months before this instance's month and adds up
    * the number of days in the month.
@@ -179,7 +185,7 @@ record Date {
  * :rtype: Date
  * :returns: new Date instance
  */
-proc DateFromIsoString(dateStr: string): Date {
+proc type Date.fromIsoString(dateStr: string): Date {
   // TODO: These are naive patterns that will accept invalid values for month
   //       and day in particular. The Date initializer will still catch the
   //       invalid Date, but a more informative error could be given here.
@@ -203,3 +209,11 @@ proc DateFromIsoString(dateStr: string): Date {
 
 const MINDATE = new Date(MINYEAR, 1, 1),
   MAXDATE = new Date(MAXYEAR, 12, 31);
+
+proc type Date.min {
+  return MINDATE.copy();
+}
+
+proc type Date.max {
+  return MAXDATE.copy();
+}
