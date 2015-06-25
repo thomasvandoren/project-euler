@@ -67,12 +67,13 @@ proc isPrime(number) {
     return false;
   }
 
+  const num = number.safeCast(uint);
   var r = (number ** 0.5): uint,
     f: uint = 5;
   while (f <= r) {
-    if number % f == 0 {
+    if num % f == 0 {
       return false;
-    } else if number % (f + 2) == 0 {
+    } else if num % (f + 2) == 0 {
       return false;
     }
     f += 6;
