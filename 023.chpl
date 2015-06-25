@@ -7,8 +7,8 @@ use MathFunctions;
 const maxInt = 28123;
 
 proc main() {
-  const D = {1..maxInt},
-    abundantInts: sparse subdomain(D),
+  const D = {1..maxInt};
+  var abundantInts: sparse subdomain(D),
     allInts: [D] bool;
 
   for n in D {
