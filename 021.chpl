@@ -19,13 +19,14 @@ proc main() {
   // Iterate over all pairs where a < b. This ensures that duplicates are not
   // added to sum. For example, without this, both 220,284 and 284,220 would be
   // considered.
+  // TODO: write a product() iterator and use it here. (thomasvandoren, 2015-06-24)
   forall a in 1..maxNum-1 {
     forall b in a+1..maxNum-1 {
       if allSums[a] == b && allSums[b] == a {
-        sum.write(sum.read() + a + b);
+        sum.fetchAdd(a + b);
 
         if printPairs {
-          writef("d(%di) = %di\nd(%di) = %di\n", a, b, b, a);
+          writef("d(%n) = %n\nd(%n) = %n\n", a, b, b, a);
         }
       }
     }

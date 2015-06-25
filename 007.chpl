@@ -27,7 +27,7 @@ proc getPrime(count) {
   var result = -1;
   for (value, i) in zip(primes(count), 1..count) {
     if printPrimes {
-      writef("%di: %di\n", i, value);
+      writef("%n: %n\n", i, value);
     }
     if i == count {
       result = value;
