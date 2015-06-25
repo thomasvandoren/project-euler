@@ -2,8 +2,6 @@
  * Math helper functions.
  */
 
-use Containers;
-
 // requires CHPL_GMP=gmp or system
 use GMP;
 
