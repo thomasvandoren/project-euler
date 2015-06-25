@@ -9,6 +9,8 @@ PRGS := $(patsubst %.chpl,%,$(SRCS))
 
 SRC = $(patsubst %,%.chpl,$@)
 
+RUN_TESTS = bash $(CWD)/util/run_tests.bash
+
 %: $(SRC)
 	$(CHPL) $(CHPL_FLAGS) -o $@ $(SRC)
 
@@ -27,4 +29,10 @@ clean:
 	@rm -f $(PRGS)
 
 tests:
-	@bash ./test/run_tests.bash
+	$(RUN_TESTS)
+
+lib-tests:
+	$(RUN_TESTS) $(CWD)/lib/
+
+all-tests:
+	$(RUN_TESTS) $(CWD)/lib/ $(CWD)/test/

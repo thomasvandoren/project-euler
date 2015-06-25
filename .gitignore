@@ -30,3 +30,5 @@
 # Testing output files
 /test/*.chpl
 *.out.tmp
+/chapel-src
+/chpl_test.log*
