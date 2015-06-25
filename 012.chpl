@@ -9,14 +9,14 @@ proc main() {
   for t in triangleNumbers() {
 
     if printNumbers then
-      writef("%di: ", t);
+      writef("%n: ", t);
 
     var count = 0;
     for f in factors(t) {
       count += 1;
 
       if printNumbers then
-        writef("%di, ", f);
+        writef("%n, ", f);
     }
     if printNumbers then
       writeln();
@@ -48,13 +48,12 @@ iter factors(n) {
   }
 }
 
-// Yield triangle numbers infinitely. Up to caller to break iteration.
+// Yield triangle numbers for all integer values. Up to caller to break
+// iteration.
 iter triangleNumbers() {
-  var num = 1,
-    triangleNum = num;
-  for i in 1..max(int) {
+  var triangleNum = 1;
+  for num in 2..max(int)-1 {
     yield triangleNum;
-    num += 1;
     triangleNum += num;
   }
 }
