@@ -8,5 +8,5 @@ Run the tests
 -------------
 
 ```bash
-./run_tests.bash
+../util/run_tests.bash
 ```
