@@ -22,7 +22,7 @@ proc main() {
   forall a in 1..maxNum-1 {
     forall b in a+1..maxNum-1 {
       if allSums[a] == b && allSums[b] == a {
-        sum.write(sum.read() + a + b);
+        sum.fetchAdd(a + b);
 
         if printPairs {
           writef("d(%n) = %n\nd(%n) = %n\n", a, b, b, a);
