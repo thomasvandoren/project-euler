@@ -1,3 +1,4 @@
+MAKEFLAGS = --no-print-directory
 
 CHPL = chpl
 CHPL_FLAGS = --fast --module-dir lib/
