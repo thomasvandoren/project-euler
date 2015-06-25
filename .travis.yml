@@ -1,0 +1,7 @@
+language: c
+compiler: gcc
+before_script:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq tcsh
+script:
+  - bash ./util/build_and_test.bash
