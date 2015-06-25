@@ -4,4 +4,4 @@ before_script:
   - sudo apt-get update -qq
   - sudo apt-get install -qq tcsh
 script:
-  - bash ./util/build_and_test.bash
+  - export CHPL_GIT_URL=git://github.com/bradcray/chapel && export CHPL_GIT_BRANCH=try-static-stuff && bash ./util/build_and_test.bash
