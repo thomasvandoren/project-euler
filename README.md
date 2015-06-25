@@ -5,6 +5,9 @@ Project Euler, in [Chapel](http://chapel.cray.com/)!
 
 [![thomasvandoren on Euler](https://projecteuler.net/profile/thomasvandoren.png)](https://projecteuler.net/profile/thomasvandoren.png)
 
+Build status:
+[![Build Status](https://travis-ci.org/thomasvandoren/project-euler.svg)](https://travis-ci.org/thomasvandoren/project-euler)
+
 Run the solutions
 -----------------
 

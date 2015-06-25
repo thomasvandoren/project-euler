@@ -22,13 +22,15 @@ printDateInfo(new Date(1, 1, 1));
 printDateInfo(new Date(9999, 12, 31));
 printDateInfo(MINDATE);
 printDateInfo(MAXDATE);
+printDateInfo(Date.min);
+printDateInfo(Date.max);
 
 printDateInfo(new Date(2014, 8, 31));
 for i in 1..7 do
   printDateInfo(new Date(2014, 9, i));
 
-printDateInfo(DateFromIsoString("2014-09-02"));
-printDateInfo(DateFromIsoString("2000-02-29"));
+printDateInfo(Date.fromIsoString("2014-09-02"));
+printDateInfo(Date.fromIsoString("2000-02-29"));
 
 for i in 1..12 do
   printDateInfo(new Date(1776, i, 1));

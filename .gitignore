@@ -27,6 +27,8 @@
 /0*
 !/0*.chpl
 
-# Test dir
+# Testing output files
 /test/*.chpl
-/test/*.out.tmp
+*.out.tmp
+/chapel-src
+/chpl_test.log*

@@ -4,10 +4,7 @@
 
 config const rangeMax = 20;
 
-const values: [{1..rangeMax}] int;
-forall i in 1..rangeMax {
-  values[i] = i;
-}
+const values: [{1..rangeMax}] int = [i in 1..rangeMax] i;
 
 proc isMultiple(value: int, numbers: [] int) {
   for num in numbers {

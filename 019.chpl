@@ -9,8 +9,8 @@ config const start = "1901-01-01",
   printDates = false;
 
 proc main() {
-  const startDate = DateFromIsoString(start),
-    endDate = DateFromIsoString(end);
+  const startDate = Date.fromIsoString(start),
+    endDate = Date.fromIsoString(end);
   var count = 0;
 
   for d in months(startDate, endDate) {

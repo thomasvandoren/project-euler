@@ -43,6 +43,24 @@ Ordinal: 3652059
 Weekday: 5
 Weekday: Friday
 
+Date: (year = 1, month = 1, day = 1)
+Days before month: 0
+Days before year: 0
+Days in month: 31
+Leap year: false
+Ordinal: 1
+Weekday: 1
+Weekday: Monday
+
+Date: (year = 9999, month = 12, day = 31)
+Days before month: 334
+Days before year: 3651694
+Days in month: 31
+Leap year: false
+Ordinal: 3652059
+Weekday: 5
+Weekday: Friday
+
 Date: (year = 2014, month = 8, day = 31)
 Days before month: 212
 Days before year: 735233
