@@ -6,17 +6,21 @@ config const maxStart = 1000000,
   printSeq = false;
 
 proc main() {
-  var maxCount, startNum: atomic int;
+  var maxCount, startNum: int;
 
-  forall i in 1..maxStart-1 {
-    var count = countCollatz(i);
-    if count > maxCount.read() {
-      maxCount.write(count);
-      startNum.write(i);
+  // Calculate all Collatz counts for 1 to maxStart-1.
+  const D: domain(1) = 1..maxStart-1,
+    collatzCounts: [D] int = [i in D] countCollatz(i);
+
+  // Find the maximum Collatz count of those calculated.
+  for (count, i) in zip(collatzCounts, 1..) {
+    if count > maxCount {
+      maxCount = count;
+      startNum = i;
     }
   }
 
-  const answer = startNum.read();
+  const answer = startNum;
   if printSeq then
     printCollatz(answer);
   writeln(answer);
