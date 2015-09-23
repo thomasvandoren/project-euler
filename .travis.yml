@@ -1,7 +1,13 @@
 language: c
 compiler: gcc
-before_script:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq tcsh
 script:
-  - export CHPL_GIT_URL=git://github.com/bradcray/chapel && export CHPL_GIT_BRANCH=try-static-stuff && bash ./util/build_and_test.bash
+  - bash ./util/build_and_test.bash
+
+# See: https://github.com/chapel-lang/chapel/blob/master/.travis.yml#L8
+env:
+  - QTHREAD_AFFINITY=no
+addons:
+  apt:
+    packages:
+      - tcsh
+sudo: false
