@@ -27,8 +27,17 @@ iter divisors(n) {
   }
 }
 
+proc intFactorial(n: int(?d)): int(d) {
+  if n < 0 then
+    halt("Error! non-positive factorial!?");
+  else if n == 0 then
+    return 1;
+  else
+    return n * intFactorial(n - 1);
+}
+
 // n!
-proc factorial(n: int): BigInt {
+proc factorial(n: integral): BigInt {
   if n < 0 {
     halt("Error! non-positive factorial!?");
   } else if n == 0 {
@@ -250,6 +259,14 @@ proc sumDigits(n) {
     result += nStr.substring(i): int;
   }
   return result;
+}
+
+iter digits(n: integral) {
+  var d = n;
+  while d > 0 {
+    yield d % 10;
+    d /= 10;
+  }
 }
 
 // Returns sum of all divisors of n.
