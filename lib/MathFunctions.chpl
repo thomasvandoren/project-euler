@@ -260,3 +260,45 @@ proc sumDivisors(n) {
   }
   return sum;
 }
+
+proc gcd(numbers) {
+  return gcdOp reduce numbers;
+}
+
+proc gcd(in a: integral, in b: integral) {
+  while b != 0 {
+    const tmp = b;
+    b = a % b;
+    a = tmp;
+  }
+  return a;
+}
+
+// recursive gcd for more than two args
+proc gcd(a: integral, b: integral, c: integral ...?n) {
+  return gcd(gcd(a, b), (...c));
+}
+
+// support gcd for reductions
+class gcdOp : ReduceScanOp {
+  type eltType;
+  var value: eltType,
+    valueSet = false;
+
+  proc accumulate(t: eltType) {
+    if !valueSet {
+      value = t;
+      valueSet = true;
+    } else {
+      value = gcd(value, t);
+    }
+  }
+
+  proc combine(state: gcdOp(eltType)) {
+    accumulate(state.value);
+  }
+
+  proc generate(): eltType {
+    return value;
+  }
+}
